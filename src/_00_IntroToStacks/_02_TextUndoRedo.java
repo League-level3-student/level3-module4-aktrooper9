@@ -2,6 +2,7 @@ package _00_IntroToStacks;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Stack;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -25,6 +26,9 @@ public class _02_TextUndoRedo implements KeyListener{
 
 JFrame frame = new JFrame();
 JLabel label = new JLabel();
+
+Stack<Character> stack = new Stack<Character>();
+String after ="";
 String s="";
 void run(){
 	frame.add(label);
@@ -38,13 +42,46 @@ public void keyTyped(KeyEvent e) {
 }
 @Override
 public void keyPressed(KeyEvent e) {
-	
+
 	// TODO Auto-generated method stub
 	char key = e.getKeyChar();
+	char restored;
+char ch= key;
+s=label.getText();
 
-s=s+String.valueOf(key);	
-    label.setText(s);
-	
+
+
+	 if(e.getKeyCode() == KeyEvent.VK_BACK_SPACE)
+	    {  
+		 if(s.length()>0){
+		after=s.substring(0, s.length()-1);
+		stack.push(s.charAt(s.length()-1));
+		label.setText(after);
+		s=after;
+		 System.out.println(after);
+		 }
+		 System.out.println(stack);
+	    }
+
+	 else if(e.getKeyCode() == KeyEvent.VK_SHIFT) {
+		// System.out.println("restore");
+		 if(!stack.isEmpty()) {
+		 restored=stack.pop();
+		
+		 s=label.getText()+restored;	
+		System.out.println(stack);
+		 label.setText(s);
+		 System.out.println(restored);
+		 }
+
+	 }
+	 else {
+		 s+=key;	
+
+		 label.setText(s);
+
+	 }
+	 frame.repaint();
 }
 @Override
 public void keyReleased(KeyEvent e) {
