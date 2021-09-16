@@ -53,11 +53,25 @@ public class _01_IntroToQueue {
     // 3. Create a Queue of Doubles using the ArrayDeque class
     //    Note: you have to use the capitalized Double and not double
     ArrayDeque<Double> queue  = new ArrayDeque<Double>();
-
+for(int i =0;i<stack.size();i++) {
     // 4. Pop off 5 elements from the Stack and add them to the Queue 
+	if(stack.size()>5) {
+	for(int j=0; j<5;j++) {
 double d= stack.pop();
 queue.add(d);
-
+System.out.println(queue);
+	}
+	}
+	else {
+		for(int s =0;s<stack.size();s++) {
+			double d= stack.pop();
+			queue.add(d);
+			System.out.println(queue);
+		
+		}
+	}
+	queue.clear();
+    }
     // 5. Print and remove a random number of elements, from 1 to 5 elements,
     //    from the front of the Queue. Example:
     //    "removing 3 elements from Queue: 25 57 2"
