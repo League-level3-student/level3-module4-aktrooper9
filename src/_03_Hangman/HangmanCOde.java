@@ -10,14 +10,18 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 public class HangmanCOde implements KeyListener {
-	JFrame frame = new JFrame();
-	JLabel label = new JLabel();
-	Stack<String> words = new Stack<String>();
-	String labelText = "";
+	JFrame frame ;
+	JLabel label;
+	Stack<String> words;
+	String labelText;
 	String used = "";
-
+	int lives;
 	void run() {
-
+		frame= new JFrame();
+		 label= new JLabel();
+		 lives=5;
+		 labelText = "";
+		 words = new Stack<String>();
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		String word = "";
@@ -36,7 +40,7 @@ public class HangmanCOde implements KeyListener {
 		frame.add(label);
 		frame.pack();
 		frame.addKeyListener(this);
-
+		
 	}
 
 	@Override
@@ -47,6 +51,7 @@ public class HangmanCOde implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+		int size=0;
 		String old = label.getText();
 		String newtext = "";
 		// TODO Auto-generated method stub
@@ -56,10 +61,28 @@ public class HangmanCOde implements KeyListener {
 			if (ch == used.charAt(i)) {
 				newtext += ch;
 			} else {
+				size+=1;
 				newtext += old.charAt(i);
 			}
 		}
-		label.setText(newtext);
+		if(newtext.equals(used)) {
+			used=words.pop();		}
+		else if(size==newtext.length()) {
+			lives-=1;
+		}
+		else if(lives<=0) {
+		int option=	JOptionPane.showOptionDialog(null, "Defeat  Do you wish to continue", "Defeat",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[] {
+					"Continue","Quit" }, null);
+		if(option==0) {
+			
+		
+		}
+		else if(option==1) {
+			
+		}
+			//JOptionPane.showOp
+		}
+		label.setText(newtext+" Lives="+lives);
 	}
 
 	@Override
