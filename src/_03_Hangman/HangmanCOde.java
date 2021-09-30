@@ -70,15 +70,17 @@ public class HangmanCOde implements KeyListener {
 		else if(size==newtext.length()) {
 			lives-=1;
 		}
-		else if(lives<=0) {
+		 if(lives<=0) {
 		int option=	JOptionPane.showOptionDialog(null, "Defeat  Do you wish to continue", "Defeat",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[] {
 					"Continue","Quit" }, null);
 		if(option==0) {
+			frame.dispose();
+			run();
 			
 		
 		}
 		else if(option==1) {
-			
+			System.exit(0);
 		}
 			//JOptionPane.showOp
 		}
